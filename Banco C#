@@ -1,0 +1,76 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Globalization;
+using System.Diagnostics.Eventing.Reader;
+
+namespace BancoNovo {
+    internal class Program {
+        static void Main(string[] args) {
+
+            double saldo = 0;
+            double extrato = 0;
+            double numero_saques = 0;
+
+            while (true) {
+
+            Console.WriteLine("======== Bem-vindo ao Sistema integrado KBJ ======== \n Digite qual opção você deseja: \n [d] Depósito \n [s] Sacar \n [e] Extrato \n [q] Sair \n====================================================");
+            string opcao = Console.ReadLine();
+
+            
+                if (opcao == "d") {
+                    Console.WriteLine("\nDigite quanto deseja depositar :");
+                    double n1 = double.Parse(Console.ReadLine());
+                    if (n1 > 0) {
+                        saldo += n1;
+                        extrato += saldo;
+                    }
+                    else {
+                        Console.WriteLine("Número inválido");
+                    }
+
+                    Console.WriteLine($"\tvocê depositou : R${n1}\n\n \tsaldo atual : R${saldo}\n");
+                }
+
+                else if (opcao == "s") {
+                    Console.WriteLine("\n Digite quanto deseja sacar :");
+                    double n2 = double.Parse(Console.ReadLine());
+                   
+                    if (n2 > 0) {
+                     Console.WriteLine("\t@@@@@ ERROR NÚMERO NEGATIVO @@@@@\t \n");
+                    }
+
+                    else if (n2 > 0) {
+                        saldo -= n2;
+                        numero_saques += n2;
+                    }
+
+
+                    Console.WriteLine($"\tVocê sacou : {n2} \n\n \tsaldo atual : {saldo}\n");
+
+                }
+
+                else if (opcao == "e") {
+
+                    if (saldo == 0) {
+                        Console.WriteLine("\n======== Error, o senhor(a) não possui nada na conta, digite novamente ========\n");
+                    }
+                        Console.WriteLine("\n \n ================= EXTRATO DA CONTA =====================");
+                    Console.WriteLine($"\n \n Depósito: R$ {extrato}\t \t Saque: R$ {numero_saques}\n \n \n Valor Total {saldo}");
+                    Console.WriteLine("\n  \n =======================================================\n\n\n");
+                }
+
+                else if (opcao == "q") {
+                    Console.WriteLine("\n\n======== Agradecemos o seu interesse com a nossa empresa ========");
+                    Console.ReadLine();
+                    break;
+
+                }
+                
+
+            }
+        }
+    }
+}
